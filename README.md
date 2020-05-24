@@ -11,7 +11,7 @@
 As output we receive chart with predicted fire warning level
 
 
-Needed:
+Needed (could install with pip3 install -r requirements.txt)
 
 > numpy
 
