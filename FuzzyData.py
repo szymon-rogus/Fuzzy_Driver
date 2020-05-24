@@ -45,33 +45,35 @@ class FuzzyWarner(object):
         self.warning_level.view()
 
     def create_rules(self):
-        rules = [ctrl.Rule(
-            self.temperature['cold'] | self.temperature['cool'] | self.temperature['chill'] | self.humidity['very_humid'],
-            self.warning_level['low']),
+        rules = [ctrl.Rule(self.temperature['cold'] | self.temperature['cool'] | self.temperature['chill']
+                           | self.humidity['very_humid'], self.warning_level['low']),
                  ctrl.Rule(self.humidity['humid'] & self.temperature['hot'], self.warning_level['medium']),
-                 ctrl.Rule(self.humidity['humid'] & self.temperature['warm'] & self.rainless_days['long'], self.warning_level['medium']),
-                 ctrl.Rule(
-                     self.humidity['humid'] & self.temperature['warm'] & (
-                             self.rainless_days['average'] | self.rainless_days['short']),
-                     self.warning_level['low']),
-                 ctrl.Rule(self.temperature['warm'] & self.rainless_days['short'], self.warning_level['low']),
-                 ctrl.Rule(self.temperature['warm'] & self.rainless_days['average'] & self.humidity['moderate'], self.warning_level['low']),
-                 ctrl.Rule(self.temperature['warm'] & self.rainless_days['long'] | self.humidity['moderate'], self.warning_level['medium']),
-                 ctrl.Rule(self.temperature['warm'] & self.humidity['dry'] & (
-                             self.rainless_days['long'] | self.rainless_days['average']),
+                 ctrl.Rule(self.humidity['humid'] & self.temperature['warm'] & self.rainless_days['long'],
                            self.warning_level['medium']),
+                 ctrl.Rule(self.humidity['humid'] & self.temperature['warm'] & (self.rainless_days['average']
+                           | self.rainless_days['short']), self.warning_level['low']),
+                 ctrl.Rule(self.temperature['warm'] & self.rainless_days['short'], self.warning_level['low']),
+                 ctrl.Rule(self.temperature['warm'] & self.rainless_days['average'] & self.humidity['moderate'],
+                           self.warning_level['low']),
+                 ctrl.Rule(self.temperature['warm'] & self.rainless_days['long'] | self.humidity['moderate'],
+                           self.warning_level['medium']),
+                 ctrl.Rule(self.temperature['warm'] & self.humidity['dry'] & (self.rainless_days['long']
+                           | self.rainless_days['average']), self.warning_level['medium']),
                  ctrl.Rule(self.temperature['warm'] & self.humidity['very_dry'] & self.rainless_days['average'],
                            self.warning_level['medium']),
-                 ctrl.Rule(self.temperature['warm'] & self.humidity['very_dry'] & self.rainless_days['long'], self.warning_level['high']),
+                 ctrl.Rule(self.temperature['warm'] & self.humidity['very_dry'] & self.rainless_days['long'],
+                           self.warning_level['high']),
                  ctrl.Rule(self.temperature['hot'] & self.humidity['moderate'], self.warning_level['medium']),
-                 ctrl.Rule(self.temperature['hot'] & self.humidity['dry'] & self.rainless_days['long'], self.warning_level['very_high']),
-                 ctrl.Rule(self.temperature['hot'] & self.humidity['dry'] & self.rainless_days['average'], self.warning_level['high']),
-                 ctrl.Rule(self.temperature['hot'] & self.humidity['dry'] & self.rainless_days['short'], self.warning_level['medium']),
-                 ctrl.Rule(
-                     self.temperature['hot'] & self.humidity['very_dry'] & (
-                                 self.rainless_days['long'] | self.rainless_days['average']),
-                     self.warning_level['very_high']),
-                 ctrl.Rule(self.temperature['hot'] & self.humidity['very_dry'] & self.rainless_days['short'], self.warning_level['high'])]
+                 ctrl.Rule(self.temperature['hot'] & self.humidity['dry'] & self.rainless_days['long'],
+                           self.warning_level['very_high']),
+                 ctrl.Rule(self.temperature['hot'] & self.humidity['dry'] & self.rainless_days['average'],
+                           self.warning_level['high']),
+                 ctrl.Rule(self.temperature['hot'] & self.humidity['dry'] & self.rainless_days['short'],
+                           self.warning_level['medium']),
+                 ctrl.Rule(self.temperature['hot'] & self.humidity['very_dry'] & (self.rainless_days['long']
+                           | self.rainless_days['average']), self.warning_level['very_high']),
+                 ctrl.Rule(self.temperature['hot'] & self.humidity['very_dry'] & self.rainless_days['short'],
+                           self.warning_level['high'])]
 
         return rules
 
